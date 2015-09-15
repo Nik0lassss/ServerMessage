@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.nikola.chk.message_service.entity.Message" table="message" catalog="server1">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="message" type="string">
+            <column name="message" length="300" not-null="true" unique="true" />
+        </property>
+        <many-to-one name="user_from" class="com.nikola.chk.message_service.entity.User"
+                     column="from_id"  />
+        <many-to-one name="user_to" class="com.nikola.chk.message_service.entity.User"
+                     column="to_id"  />
+
+    </class>
+</hibernate-mapping>
