@@ -14,7 +14,9 @@
 
         <mapping resource="User.hbm.xml"></mapping>
         <mapping resource="Message.hbm.xml"></mapping>
-        <mapping resource="Stock.hbm.xml" />
-        <mapping resource="StockDailyRecord.hbm.xml" />
+        <mapping resource="Stock.hbm.xml"/>
+        <mapping resource="StockDailyRecord.hbm.xml"/>
+        <mapping resource="Address.hbm.xml"/>
+        <mapping resource="Employee.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

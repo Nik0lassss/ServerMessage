@@ -1,14 +1,20 @@
 package com.nikola.chk.message_service.entity;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by Nikola on 9/9/2015.
  */
+@XmlRootElement
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Message implements java.io.Serializable{
     private Integer id;
     private String message;
+
     private User user_from;
     private User user_to;
 //    private Integer from_id;

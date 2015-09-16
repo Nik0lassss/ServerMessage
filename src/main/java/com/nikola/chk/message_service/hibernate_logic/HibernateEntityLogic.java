@@ -1,5 +1,6 @@
 package com.nikola.chk.message_service.hibernate_logic;
 
+import com.nikola.chk.message_service.entity.User;
 import com.nikola.chk.message_service.error_messages.ErrorMessage;
 import com.nikola.chk.message_service.error_messages.ErroreCode;
 import com.nikola.chk.message_service.error_messages.ErroreObject;
@@ -43,13 +44,12 @@ public class HibernateEntityLogic {
 
         return object;
     }
-    public  static List<Object> getEntiteCriteriaEquels(Class classobject, String row, String value)
+    public  static List<Object> getEntiteCriteriaEquels(Class classobject, String row, Object objectForCriteria)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Object> object = session.createCriteria(classobject).add(Restrictions.eq(row,2)).list();
+        List<Object> listObjectsForLoad = session.createCriteria(classobject).add(Restrictions.eq(row,objectForCriteria)).list();
         session.getTransaction().commit();
-
-        return object;
+        return listObjectsForLoad;
     }
 }
