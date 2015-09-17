@@ -8,6 +8,8 @@ import com.nikola.chk.message_service.entity.*;
 import com.nikola.chk.message_service.error_messages.ErroreObject;
 import com.nikola.chk.message_service.hibernate_logic.HibernateEntityLogic;
 import com.nikola.chk.message_service.persistance.HibernateUtil;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -105,4 +108,37 @@ public class Connector {
 
         return Response.ok().build();
     }
+    private static final String FOLDER_PATH = "D:\\MyFolder\\";
+
+    @POST
+    @Path("/upload")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String uploadFile(@FormDataParam("file") InputStream fis,
+                             @FormDataParam("file") FormDataContentDisposition fdcd) {
+
+        OutputStream outpuStream = null;
+        String fileName = fdcd.getFileName();
+        System.out.println("File Name: " + fdcd.getFileName());
+        String filePath = FOLDER_PATH + fileName;
+
+        try {
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            outpuStream = new FileOutputStream(new File(filePath));
+            while ((read = fis.read(bytes)) != -1) {
+                outpuStream.write(bytes, 0, read);
+            }
+            outpuStream.flush();
+            outpuStream.close();
+        } catch(IOException iox){
+            iox.printStackTrace();
+        } finally {
+            if(outpuStream != null){
+                try{outpuStream.close();} catch(Exception ex){}
+            }
+        }
+        return "File Upload Successfully !!";
+    }
+
 }
