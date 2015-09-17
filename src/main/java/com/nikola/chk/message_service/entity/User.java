@@ -18,10 +18,7 @@ public class User {
     private Integer id;
     private String first_name;
     private String last_name;
-//    private Set<Message> messages =
-//            new HashSet<Message>(0);
-//    private Set<Message> messages_to =
-//            new HashSet<Message>(0);
+
 
 
 

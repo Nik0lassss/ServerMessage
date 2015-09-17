@@ -58,15 +58,19 @@ public class Connector {
     };
 
     @GET
-    @Path("/user/message/{userId}")
+    @Path("/user/message/received/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public  List<Object> getMessage(@PathParam("userId") int userId)
+    public  List<Object> getMessageReceived(@PathParam("userId") int userId)
     {
-        User user_to = (User) HibernateEntityLogic.getEntite(User.class,userId);
-        List<Object> messages = HibernateEntityLogic.getEntiteCriteriaEquels(Message.class,"user_to",user_to);
-        return messages;
+        return HibernateEntityLogic.getEntiteCriteriaEquels(Message.class, "user_from", (User) HibernateEntityLogic.getEntite(User.class, userId));
     }
-
+    @GET
+    @Path("/user/message/sent/{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public  List<Object> getMessageSent(@PathParam("userId") int userId)
+    {
+        return HibernateEntityLogic.getEntiteCriteriaEquels(Message.class,"user_to",(User) HibernateEntityLogic.getEntite(User.class,userId));
+    }
 
 
     @PUT

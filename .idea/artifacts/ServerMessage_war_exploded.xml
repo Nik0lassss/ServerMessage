@@ -36,6 +36,8 @@
           <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.0.b2" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: com.sun.jersey.contribs:jersey-multipart:1.9" />
+          <element id="library" level="project" name="Maven: org.jvnet:mimepull:1.6" />
         </element>
       </element>
     </root>
