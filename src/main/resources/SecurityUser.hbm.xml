@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.nikola.chk.message_service.entity.SecurityUser" table="security_users" catalog="messageserverdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="userPassword" type="string">
+            <column name="user_password" length="100" not-null="true" unique="true"/>
+        </property>
+        <property name="userLogin" type="string">
+            <column name="user_login" length="100" not-null="true" unique="true"/>
+        </property>
+        <many-to-one name="user" class="com.nikola.chk.message_service.entity.User"
+                     column="user_id"/>
+    </class>
+</hibernate-mapping>

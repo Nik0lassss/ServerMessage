@@ -60,19 +60,34 @@ public class Connector {
         return   HibernateEntityLogic.getEntite(User.class, userId);
     };
 
+    @POST
+    @Path("/user/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    public  Object loginUser(@FormParam("login") String userLogin,@FormParam("password") String userPassword)
+    {
+        List<Object> securityUserList =(List<Object>) HibernateEntityLogic.getEntiteCriteriaEquelsList(SecurityUser.class, "userLogin", "userPassword",userLogin,userPassword);
+        if(0!=securityUserList.size())
+        {
+            SecurityUser securityUser =(SecurityUser) securityUserList.get(0);
+            return  securityUser.getUser();
+        }
+        return null;
+    };
+
+
     @GET
     @Path("/user/message/received/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public  List<Object> getMessageReceived(@PathParam("userId") int userId)
     {
-        return HibernateEntityLogic.getEntiteCriteriaEquels(Message.class, "user_from", (User) HibernateEntityLogic.getEntite(User.class, userId));
+        return HibernateEntityLogic.getEntiteCriteriaEquelsList(Message.class, "user_from", (User) HibernateEntityLogic.getEntite(User.class, userId));
     }
     @GET
     @Path("/user/message/sent/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public  List<Object> getMessageSent(@PathParam("userId") int userId)
     {
-        return HibernateEntityLogic.getEntiteCriteriaEquels(Message.class,"user_to",(User) HibernateEntityLogic.getEntite(User.class,userId));
+        return HibernateEntityLogic.getEntiteCriteriaEquelsList(Message.class, "user_to", (User) HibernateEntityLogic.getEntite(User.class, userId));
     }
 
 

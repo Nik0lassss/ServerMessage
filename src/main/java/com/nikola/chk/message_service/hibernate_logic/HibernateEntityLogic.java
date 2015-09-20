@@ -44,12 +44,21 @@ public class HibernateEntityLogic {
 
         return object;
     }
-    public  static List<Object> getEntiteCriteriaEquels(Class classobject, String row, Object objectForCriteria)
+    public  static List<Object> getEntiteCriteriaEquelsList(Class classobject, String row, Object objectForCriteria)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Object> listObjectsForLoad = session.createCriteria(classobject).add(Restrictions.eq(row,objectForCriteria)).list();
+        List<Object> listObjectsForLoad = session.createCriteria(classobject).add(Restrictions.eq(row, objectForCriteria)).list();
         session.getTransaction().commit();
         return listObjectsForLoad;
+    }
+
+    public  static List<Object> getEntiteCriteriaEquelsList(Class classobject, String row,String row2, Object objectForCriteria, Object objectForCriteria2)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<Object> objectsForLoadList = session.createCriteria(classobject).add(Restrictions.eq(row, objectForCriteria)).add(Restrictions.eq(row2, objectForCriteria2)).list();
+        session.getTransaction().commit();
+        return objectsForLoadList;
     }
 }
