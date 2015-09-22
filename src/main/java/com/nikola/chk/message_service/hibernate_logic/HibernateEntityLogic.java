@@ -15,15 +15,15 @@ import java.util.List;
  * Created by Nikola on 9/8/2015.
  */
 public class HibernateEntityLogic {
-    public static ErroreObject  SaveObject(Object object) {
+    public static Object  SaveObject(Object object) {
         ErroreObject erroreObject;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(object);
         session.getTransaction().commit();
-        erroreObject = new ErroreObject(ErrorMessage.hibernateSaveObjectOk, ErroreCode.save_success);
+        //erroreObject = new ErroreObject(ErrorMessage.hibernateSaveObjectOk, ErroreCode.save_success);
 
-        return erroreObject;
+        return object;
     }
     public  static List<Object> getAllEntites(Class classobject)
     {

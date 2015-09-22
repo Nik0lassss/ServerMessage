@@ -48,7 +48,35 @@ public class Connector {
         User user = new User();
         user.setFirst_name(firstName);
         user.setLast_name(lastName);
-        ErroreObject erroreObject = HibernateEntityLogic.SaveObject(user);
+        HibernateEntityLogic.SaveObject(user);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("/security_user/")
+    public Response createSecurityUser(@FormParam("firstName") String firstName, @FormParam("lastName") String lastName ){
+        User user = new User();
+        user.setFirst_name(firstName);
+        user.setLast_name(lastName);
+         HibernateEntityLogic.SaveObject(user);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("/account/create")
+    public Response createAccountUser(@FormParam("firstName") String firstName, @FormParam("lastName") String lastName,@FormParam("login") String login,@FormParam("password") String password){
+        User user = new User();
+        user.setFirst_name(firstName);
+        user.setLast_name(lastName);
+        SecurityUser securityUser = new SecurityUser();
+        securityUser.setUserLogin(login);
+        securityUser.setUserPassword(password);
+
+        HibernateEntityLogic.SaveObject(securityUser);
+        user.setSecurityUser(securityUser);
+            HibernateEntityLogic.SaveObject(user);
+
+
         return Response.ok().build();
     }
 
@@ -69,7 +97,7 @@ public class Connector {
         if(0!=securityUserList.size())
         {
             SecurityUser securityUser =(SecurityUser) securityUserList.get(0);
-            return  securityUser.getUser();
+            return  HibernateEntityLogic.getEntiteCriteriaEquelsList(User.class,"securityUser",securityUser);
         }
         return null;
     };

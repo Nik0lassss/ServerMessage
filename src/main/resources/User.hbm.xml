@@ -4,28 +4,16 @@
 <hibernate-mapping>
     <class name="com.nikola.chk.message_service.entity.User" table="users" catalog="messageserverdb">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
+            <column name="id"/>
+            <generator class="identity"/>
         </id>
         <property name="first_name" type="string">
-            <column name="first_name" length="100" not-null="true" unique="true" />
+            <column name="first_name" length="100" not-null="true" unique="true"/>
         </property>
         <property name="last_name" type="string">
-            <column name="last_name" length="100" not-null="true" unique="true" />
+            <column name="last_name" length="100" not-null="true" unique="true"/>
         </property>
-        <!--<set name="messages" table="message"-->
-             <!--inverse="true" lazy="true" fetch="select">-->
-            <!--<key>-->
-                <!--<column name="to_id" not-null="true" />-->
-            <!--</key>-->
-            <!--<one-to-many class="com.nikola.chk.message_service.entity.Message" />-->
-        <!--</set>-->
-        <!--<set name="messages_to" table="message"-->
-             <!--inverse="true" lazy="true" fetch="select">-->
-            <!--<key>-->
-                <!--<column name="to_id" not-null="true" />-->
-            <!--</key>-->
-            <!--<one-to-many class="com.nikola.chk.message_service.entity.Message" />-->
-        <!--</set>-->
+        <many-to-one name="securityUser" class="com.nikola.chk.message_service.entity.SecurityUser"
+                column="user_id"/>
     </class>
 </hibernate-mapping>

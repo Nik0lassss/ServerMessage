@@ -1,25 +1,32 @@
 package com.nikola.chk.message_service.entity;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Created by Nikolas on 20.09.2015.
  */
+@XmlRootElement
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SecurityUser {
     private Integer id;
     private String userPassword, userLogin;
-    private User user;
 
 
-    public SecurityUser(Integer id, String userPassword, String userLogin, User user) {
+
+    public SecurityUser(Integer id, String userPassword, String userLogin) {
         this.id = id;
         this.userPassword = userPassword;
         this.userLogin = userLogin;
-        this.user = user;
     }
 
 
 
     public SecurityUser() {
     }
+
 
     public Integer getId() {
         return id;
@@ -29,6 +36,7 @@ public class SecurityUser {
         this.id = id;
     }
 
+    @JsonIgnore
     public String getUserPassword() {
         return userPassword;
     }
@@ -37,6 +45,7 @@ public class SecurityUser {
         this.userPassword = userPassword;
     }
 
+    @JsonIgnore
     public String getUserLogin() {
         return userLogin;
     }
@@ -45,11 +54,5 @@ public class SecurityUser {
         this.userLogin = userLogin;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

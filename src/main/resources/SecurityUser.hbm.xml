@@ -13,7 +13,6 @@
         <property name="userLogin" type="string">
             <column name="user_login" length="100" not-null="true" unique="true"/>
         </property>
-        <many-to-one name="user" class="com.nikola.chk.message_service.entity.User"
-                     column="user_id"/>
+
     </class>
 </hibernate-mapping>
