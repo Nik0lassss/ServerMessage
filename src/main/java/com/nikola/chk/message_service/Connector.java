@@ -15,9 +15,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+import javax.imageio.ImageIO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
@@ -118,6 +121,36 @@ public class Connector {
         return HibernateEntityLogic.getEntiteCriteriaEquelsList(Message.class, "user_to", (User) HibernateEntityLogic.getEntite(User.class, userId));
     }
 
+    @GET
+    @Path("/{picture_name}")
+    @Produces("image/png")
+    public Response getFullImage(@PathParam("picture_name") String file_name) {
+
+        BufferedImage image = null;
+        try {
+            File imageFile=new File("D:\\MyFolder\\"+file_name+".png");
+            if(imageFile!=null) image = ImageIO.read(imageFile);
+            else return Response.status(Response.Status.NO_CONTENT).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            if(image!=null) ImageIO.write(image, "png", baos);
+           else return Response.status(Response.Status.NO_CONTENT).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        byte[] imageData = baos.toByteArray();
+
+        // uncomment line below to send non-streamed
+         return Response.ok(imageData).build();
+
+        // uncomment line below to send streamed
+         //return Response.ok(new ByteArrayInputStream(imageData)).build();
+
+    }
 
     @PUT
     @Path("/user/message")
