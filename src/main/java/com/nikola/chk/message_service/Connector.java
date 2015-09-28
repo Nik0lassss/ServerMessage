@@ -122,7 +122,7 @@ public class Connector {
     }
 
     @GET
-    @Path("/{picture_name}")
+    @Path("/image/{picture_name}")
     @Produces("image/png")
     public Response getFullImage(@PathParam("picture_name") String file_name) {
 

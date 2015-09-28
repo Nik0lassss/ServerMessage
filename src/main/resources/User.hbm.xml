@@ -15,5 +15,8 @@
         </property>
         <many-to-one name="securityUser" class="com.nikola.chk.message_service.entity.SecurityUser"
                 column="user_id"/>
+        <property name="photo_avatar" type="string">
+            <column name="photo_avatar" length="100" not-null="true" unique="true"/>
+        </property>
     </class>
 </hibernate-mapping>

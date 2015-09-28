@@ -20,17 +20,31 @@ public class User {
     private String first_name;
     private String last_name;
     private SecurityUser securityUser;
+    private String photo_avatar;
+
+
+    public User(Integer id, String first_name, String last_name, SecurityUser securityUser, String photo_avatar) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.securityUser = securityUser;
+        this.photo_avatar = photo_avatar;
+    }
+
+    public String getPhoto_avatar() {
+        return photo_avatar;
+    }
+
+    public void setPhoto_avatar(String photo_avatar) {
+        this.photo_avatar = photo_avatar;
+    }
 
 
     public User() {
     }
 
-    public User(Integer id, String first_name, String last_name, SecurityUser securityUser) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.securityUser = securityUser;
-    }
+
+
 
     @JsonIgnore
     public Integer getId() {
@@ -64,4 +78,6 @@ public class User {
     public void setSecurityUser(SecurityUser securityUser) {
         this.securityUser = securityUser;
     }
+
+
 }
