@@ -8,7 +8,7 @@
             <generator class="identity" />
         </id>
         <property name="message" type="string">
-            <column name="message" length="300" not-null="true" unique="true" />
+            <column name="message" length="300"  />
         </property>
         <many-to-one name="user_from" class="com.nikola.chk.message_service.entity.User"
                      column="from_id"  />

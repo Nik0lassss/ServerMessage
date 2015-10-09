@@ -11,30 +11,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SecurityUser {
-    private Integer id;
-    private String userPassword, userLogin;
+    private Integer user_id;
+    private String userPassword;
 
-
-
-    public SecurityUser(Integer id, String userPassword, String userLogin) {
-        this.id = id;
+    public SecurityUser(Integer user_id, String userPassword) {
+        this.user_id = user_id;
         this.userPassword = userPassword;
-        this.userLogin = userLogin;
     }
-
-
 
     public SecurityUser() {
     }
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @JsonIgnore
     public String getUserPassword() {
@@ -45,14 +32,12 @@ public class SecurityUser {
         this.userPassword = userPassword;
     }
 
-    @JsonIgnore
-    public String getUserLogin() {
-        return userLogin;
+
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
-
-
 }

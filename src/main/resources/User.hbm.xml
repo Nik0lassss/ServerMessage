@@ -3,20 +3,21 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.nikola.chk.message_service.entity.User" table="users" catalog="messageserverdb">
-        <id name="id" type="java.lang.Integer">
+        <id name="user_id" type="java.lang.Integer">
             <column name="id"/>
             <generator class="identity"/>
         </id>
+        <property name="user_login" type="string">
+            <column name="user_login" length="100" not-null="true" unique="true"/>
+        </property>
         <property name="first_name" type="string">
-            <column name="first_name" length="100" not-null="true" unique="true"/>
+            <column name="first_name" length="100" not-null="true"/>
         </property>
         <property name="last_name" type="string">
-            <column name="last_name" length="100" not-null="true" unique="true"/>
+            <column name="last_name" length="100" not-null="true"/>
         </property>
-        <many-to-one name="securityUser" class="com.nikola.chk.message_service.entity.SecurityUser"
-                column="user_id"/>
         <property name="photo_avatar" type="string">
-            <column name="photo_avatar" length="100" not-null="true" unique="true"/>
+            <column name="photo_avatar" length="100" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

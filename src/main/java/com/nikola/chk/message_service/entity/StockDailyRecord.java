@@ -4,7 +4,6 @@ package com.nikola.chk.message_service.entity;
  * Created by Nikola on 9/11/2015.
  */
 import java.util.Date;
-import java.util.Set;
 
 public class StockDailyRecord implements java.io.Serializable {
 

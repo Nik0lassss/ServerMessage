@@ -3,8 +3,6 @@ package com.nikola.chk.message_service.entity;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Nikola on 9/9/2015.
